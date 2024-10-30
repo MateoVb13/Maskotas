@@ -5,7 +5,7 @@
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new Detalle()); // Configura Detalle como página de inicio
+            MainPage = new NavigationPage(new Pages.LoginPage()); // Configura LoginPage como página de inicio
         }
     }
 }

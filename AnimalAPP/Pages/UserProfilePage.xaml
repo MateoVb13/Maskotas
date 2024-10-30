@@ -4,12 +4,22 @@
              x:Class="AnimalAPP.Pages.UserProfilePage"
              Title="UserProfilePage">
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <Label Text="Perfil de Usuario" FontSize="Large" HorizontalOptions="Center"/>
-            <Entry Placeholder="Nombre" Text="{Binding UserName}"/>
-            <Entry Placeholder="Correo Electrónico" Text="{Binding Email}"/>
-            <Label Text="Historial de Citas" FontSize="Medium" Margin="0,20,0,5"/>
-            <!-- Aquí se muestra el historial de citas -->
+        <StackLayout Padding="30" VerticalOptions="Center" Spacing="15">
+
+            <!-- Título de la página -->
+            <Label Text="Perfil de Usuario" 
+                   FontSize="28"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+
+            <!-- Nombre del usuario -->
+            <Label Text="Nombre:" FontSize="18" FontAttributes="Bold"/>
+            <Label x:Name="NameLabel" FontSize="16" TextColor="Gray"/>
+
+            <!-- Correo electrónico del usuario -->
+            <Label Text="Correo Electrónico:" FontSize="18" FontAttributes="Bold"/>
+            <Label x:Name="EmailLabel" FontSize="16" TextColor="Gray"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

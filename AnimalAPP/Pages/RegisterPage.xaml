@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalAPP.Pages.RegisterPage">
+    <ContentPage.Content>
+        <StackLayout Padding="30" VerticalOptions="Center" Spacing="15">
+            <Label Text="Registro de Usuario" FontSize="28" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+            <!-- Entrada de Nombre -->
+            <Entry Placeholder="Nombre Completo" x:Name="NameEntry"/>
+
+            <!-- Entrada de Correo Electrónico -->
+            <Entry Placeholder="Correo Electrónico" x:Name="EmailEntry" Keyboard="Email"/>
+
+            <!-- Entrada de Contraseña -->
+            <Entry Placeholder="Contraseña" x:Name="PasswordEntry" IsPassword="True"/>
+
+            <!-- Confirmación de Contraseña -->
+            <Entry Placeholder="Confirmar Contraseña" x:Name="ConfirmPasswordEntry" IsPassword="True"/>
+
+            <!-- Botón de Registro -->
+            <Button Text="Registrarse" BackgroundColor="DarkGreen" TextColor="White" CornerRadius="20" Clicked="OnRegisterClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

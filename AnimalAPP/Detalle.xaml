@@ -1,12 +1,73 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AnimalAPP.Detalle"
-             Title="Detalle">
+             x:Class="AnimalAPP.Detalle">
+
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Label Text="Bienvenido a Maskotas" FontSize="Large" HorizontalOptions="Center"/>
-            <Button Text="Ir al Menú" Clicked="OnMenuButtonClicked" HorizontalOptions="End"/>
-        </StackLayout>
+        <Grid>
+            <ScrollView Grid.Row="0">
+                <StackLayout Padding="20" Spacing="15">
+
+                    <!-- Título Principal -->
+                    <Label Text="Nuestra Prioridad: Cuidar de tu Mascota" 
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="DarkGreen"
+                           HorizontalOptions="Center"
+                           Margin="0,10,0,20" />
+
+                    <!-- Sección de Introducción -->
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="15" Margin="0,0,0,15">
+                        <StackLayout>
+                            <Label Text="En nuestra clínica veterinaria, entendemos lo especial que es tu compañero de cuatro patas. Ofrecemos servicios completos y de alta calidad para satisfacer sus necesidades de salud y bienestar, con un equipo profesional, dedicado y experimentado que brinda cuidados compasivos y personalizados."
+                                   FontSize="16"
+                                   TextColor="Black"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Sección de Prevención y Educación -->
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="15" Margin="0,0,0,15">
+                        <StackLayout>
+                            <Label Text="Prevención y Educación"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="DarkGreen"
+                                   HorizontalOptions="Center"
+                                   Margin="0,0,0,10"/>
+                            <Label Text="Valoramos la importancia de la prevención y la educación. Nuestro equipo se compromete a orientarte y proporcionarte consejos útiles para mantener a tu mascota sana y feliz. Siempre estamos disponibles para responder tus preguntas y ofrecer recomendaciones personalizadas."
+                                   FontSize="16"
+                                   TextColor="Black"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Sección de Instalaciones Modernas -->
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="15" Margin="0,0,0,15">
+                        <StackLayout>
+                            <Label Text="Instalaciones Modernas y Tecnología Avanzada"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="DarkGreen"
+                                   HorizontalOptions="Center"
+                                   Margin="0,0,0,10"/>
+                            <Label Text="Contamos con instalaciones de última generación para garantizar diagnósticos precisos y tratamientos efectivos. Además, mantenemos un ambiente tranquilo y acogedor para que tu mascota se sienta segura y cómoda durante sus visitas."
+                                   FontSize="16"
+                                   TextColor="Black"/>
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+            </ScrollView>
+
+            <!-- Botón de Navegación al Menú Lateral -->
+            <Button Text="Ir al Menú" 
+                    FontSize="18"
+                    CornerRadius="20"
+                    BackgroundColor="DarkGreen"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    VerticalOptions="End"
+                    Margin="20"
+                    Clicked="OnMenuButtonClicked"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
