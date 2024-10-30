@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalAPP.Pages.AppointmentPage"
+             Title="AppointmentPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Agendar Cita" FontSize="Large" HorizontalOptions="Center"/>
+            <Picker Title="Tipo de Consulta">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Consulta General</x:String>
+                        <x:String>Urgencia</x:String>
+                        <x:String>Vacunación</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <DatePicker />
+            <TimePicker />
+            <Button Text="Confirmar Cita" Clicked="OnConfirmAppointment"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

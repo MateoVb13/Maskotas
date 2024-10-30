@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalAPP.Pages.AdminPanelPage"
+             Title="AdminPanelPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Panel de Administración" FontSize="Large" HorizontalOptions="Center"/>
+            <Button Text="Gestionar Citas" Clicked="OnManageAppointments"/>
+            <Button Text="Gestionar Usuarios" Clicked="OnManageUsers"/>
+            <Button Text="Gestionar Veterinarios" Clicked="OnManageVets"/>
+            <Button Text="Reportes de Actividad" Clicked="OnViewReports"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

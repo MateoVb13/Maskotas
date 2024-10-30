@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalAPP.Pages.UserProfilePage"
+             Title="UserProfilePage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Perfil de Usuario" FontSize="Large" HorizontalOptions="Center"/>
+            <Entry Placeholder="Nombre" Text="{Binding UserName}"/>
+            <Entry Placeholder="Correo Electrónico" Text="{Binding Email}"/>
+            <Label Text="Historial de Citas" FontSize="Medium" Margin="0,20,0,5"/>
+            <!-- Aquí se muestra el historial de citas -->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

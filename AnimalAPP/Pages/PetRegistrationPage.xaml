@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalAPP.Pages.PetRegistrationPage"
+             Title="PetRegistrationPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Registrar Mascota" FontSize="Large" HorizontalOptions="Center"/>
+            <Entry Placeholder="Nombre de la Mascota"/>
+            <Picker Title="Especie">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Perro</x:String>
+                        <x:String>Gato</x:String>
+                        <x:String>Otro</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Entry Placeholder="Raza"/>
+            <Entry Placeholder="Edad"/>
+            <Editor Placeholder="Condiciones Médicas"/>
+            <Button Text="Guardar" Clicked="OnSavePet"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -5,8 +5,7 @@
         public App()
         {
             InitializeComponent();
-
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new Detalle()); // Configura Detalle como página de inicio
         }
     }
 }

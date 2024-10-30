@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalAPP.Maestro"
+             Title="Maestro">
+    <ContentPage.Content>
+        <Grid BackgroundColor="LightGray">
+            <StackLayout Padding="20" VerticalOptions="StartAndExpand">
+                <Label Text="Menú Principal" FontSize="Large" HorizontalOptions="Center"/>
+                <Button Text="Perfil de Usuario" Clicked="OnUserProfileClicked"/>
+                <Button Text="Registrar Mascotas" Clicked="OnPetRegistrationClicked"/>
+                <Button Text="Agendar Cita" Clicked="OnAppointmentClicked"/>
+                <Button Text="Servicios" Clicked="OnServiceClicked"/>
+                <Button Text="Panel de Administración" Clicked="OnAdminPanelClicked"/>
+                <Button Text="Salir" Clicked="OnLogoutClicked"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
