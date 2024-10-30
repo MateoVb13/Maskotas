@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Hosting;
+using AnimalAPP.Services;
 
 namespace AnimalAPP
 {
@@ -18,6 +21,9 @@ namespace AnimalAPP
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            // Registrar AuthService como singleton
+            builder.Services.AddSingleton<AuthService>();
 
             return builder.Build();
         }
