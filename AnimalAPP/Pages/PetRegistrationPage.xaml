@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AnimalAPP.Pages.PetRegistrationPage"
-             Title="PetRegistrationPage">
+             x:Class="AnimalAPP.Pages.PetRegistrationPage">
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <Label Text="Registrar Mascota" FontSize="Large" HorizontalOptions="Center"/>
-            <Entry Placeholder="Nombre de la Mascota"/>
-            <Picker Title="Especie">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Perro</x:String>
-                        <x:String>Gato</x:String>
-                        <x:String>Otro</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-            <Entry Placeholder="Raza"/>
-            <Entry Placeholder="Edad"/>
-            <Editor Placeholder="Condiciones Médicas"/>
-            <Button Text="Guardar" Clicked="OnSavePet"/>
+        <StackLayout Padding="30" VerticalOptions="Center" Spacing="15">
+
+            <!-- Título de la página -->
+            <Label Text="Registrar Mascota"
+                   FontSize="28"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+
+            <!-- Entrada de Nombre de la Mascota -->
+            <Entry Placeholder="Nombre de la Mascota" x:Name="PetNameEntry"/>
+
+            <!-- Entrada de Especie -->
+            <Entry Placeholder="Especie (Ej. Perro, Gato)" x:Name="SpeciesEntry"/>
+
+            <!-- Entrada de Raza -->
+            <Entry Placeholder="Raza" x:Name="BreedEntry"/>
+
+            <!-- Botón de Guardar Mascota -->
+            <Button Text="Guardar Mascota"
+                    BackgroundColor="DarkGreen"
+                    TextColor="White"
+                    CornerRadius="20"
+                    Clicked="OnSavePetClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+    

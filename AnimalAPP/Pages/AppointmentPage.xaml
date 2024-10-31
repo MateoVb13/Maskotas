@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AnimalAPP.Pages.AppointmentPage"
-             Title="AppointmentPage">
+             x:Class="AnimalAPP.Pages.AppointmentPage">
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Label Text="Agendar Cita" FontSize="Large" HorizontalOptions="Center"/>
-            <Picker Title="Tipo de Consulta">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Consulta General</x:String>
-                        <x:String>Urgencia</x:String>
-                        <x:String>Vacunación</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-            <DatePicker />
-            <TimePicker />
-            <Button Text="Confirmar Cita" Clicked="OnConfirmAppointment"/>
+        <StackLayout Padding="30" Spacing="15">
+
+            <!-- Título de la página -->
+            <Label Text="Agendar Cita"
+                   FontSize="28"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+
+            <!-- Picker para Seleccionar una Mascota -->
+            <Label Text="Selecciona una Mascota:" FontSize="18" FontAttributes="Bold"/>
+            <Picker x:Name="PetPicker"
+                    Title="Selecciona una mascota"
+                    ItemDisplayBinding="{Binding Name}"/>
+
+            <!-- Picker para Seleccionar un Servicio -->
+            <Label Text="Selecciona un Servicio:" FontSize="18" FontAttributes="Bold"/>
+            <Picker x:Name="ServicePicker"
+                    Title="Selecciona un servicio"/>
+
+            <!-- Campos adicionales para agendar la cita -->
+            <Label Text="Fecha y Hora:" FontSize="18" FontAttributes="Bold"/>
+            <DatePicker x:Name="DatePicker" />
+            <TimePicker x:Name="TimePicker" />
+
+            <!-- Botón para Confirmar la Cita -->
+            <Button Text="Agendar Cita"
+                    BackgroundColor="DarkGreen"
+                    TextColor="White"
+                    CornerRadius="20"
+                    Clicked="OnConfirmAppointmentClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

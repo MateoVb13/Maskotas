@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AnimalAPP.Pages.UserProfilePage"
-             Title="UserProfilePage">
+             x:Class="AnimalAPP.Pages.UserProfilePage">
     <ContentPage.Content>
         <StackLayout Padding="30" VerticalOptions="Center" Spacing="15">
-
             <!-- Título de la página -->
             <Label Text="Perfil de Usuario" 
                    FontSize="28"
@@ -20,6 +18,29 @@
             <Label Text="Correo Electrónico:" FontSize="18" FontAttributes="Bold"/>
             <Label x:Name="EmailLabel" FontSize="16" TextColor="Gray"/>
 
+            <!-- Lista de Mascotas -->
+            <Label Text="Mascotas Registradas:" FontSize="20" FontAttributes="Bold" Margin="0,20,0,5"/>
+            <CollectionView x:Name="PetsCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold"/>
+                                <Label Text="{Binding Species}" FontSize="16"/>
+                                <Label Text="{Binding Breed}" FontSize="16"/>
+                                <Label Text="Historial:" FontSize="16" FontAttributes="Bold" Margin="0,10,0,5"/>
+                                <CollectionView ItemsSource="{Binding History}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Text="{Binding}" FontSize="14" TextColor="Gray"/>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
