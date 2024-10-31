@@ -1,16 +1,18 @@
+// Views/LoginPage.xaml.cs
 using AnimalAPP.Services;
+using AnimalAPP.Models;
 using AnimalAPP.Pages;
 
 namespace AnimalAPP.Pages
 {
     public partial class LoginPage : ContentPage
     {
-        private readonly AuthService authService;
+        private readonly AuthService _authService;
 
         public LoginPage(AuthService authService)
         {
             InitializeComponent();
-            this.authService = authService;
+            _authService = authService;
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
@@ -18,14 +20,21 @@ namespace AnimalAPP.Pages
             var email = EmailEntry.Text;
             var password = PasswordEntry.Text;
 
-            var usuario = authService.Login(email, password);
+            var usuario = await _authService.Login(email, password);
             if (usuario != null)
             {
                 await DisplayAlert("Éxito", "Inicio de sesión exitoso", "OK");
-                if (authService.EsAdmin(usuario))
-                    await Navigation.PushAsync(new CitaPage()); // Página de administración
+
+                var citaService = App.ServiceProvider.GetService<CitaService>();
+
+                if (_authService.EsAdmin(usuario))
+                {
+                    await Navigation.PushAsync(new CitaPage(citaService)); // Navegar a CitaPage con CitaService inyectado
+                }
                 else
-                    await Navigation.PushAsync(new CitaPage()); // Página estándar para usuarios
+                {
+                    await Navigation.PushAsync(new CitaPage(citaService)); // Navegar a CitaPage con CitaService inyectado
+                }
             }
             else
             {
@@ -35,7 +44,7 @@ namespace AnimalAPP.Pages
 
         private async void OnRegisterClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterPage(authService));
+            await Navigation.PushAsync(new RegisterPage(_authService));
         }
     }
 }

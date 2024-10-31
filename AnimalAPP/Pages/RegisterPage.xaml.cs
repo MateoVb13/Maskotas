@@ -1,47 +1,38 @@
-using AnimalAPP.Models;
+// Views/RegisterPage.xaml.cs
 using AnimalAPP.Services;
+using AnimalAPP.Models;
 
-namespace AnimalAPP.Pages;
-
-public partial class RegisterPage : ContentPage
+namespace AnimalAPP.Pages
 {
-    private readonly AuthService authService;
-
-    public RegisterPage(AuthService authService)
+    public partial class RegisterPage : ContentPage
     {
-        InitializeComponent();
-        this.authService = authService;
-    }
+        private readonly AuthService _authService;
 
-    private async void OnRegisterClicked(object sender, EventArgs e)
-    {
-        var nombre = NombreEntry.Text;
-        var email = EmailEntry.Text;
-        var password = PasswordEntry.Text;
-        var rol = RolPicker.SelectedItem?.ToString();
-
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(rol))
+        public RegisterPage(AuthService authService)
         {
-            await DisplayAlert("Error", "Por favor complete todos los campos.", "OK");
-            return;
+            InitializeComponent();
+            _authService = authService;
         }
 
-        var usuario = new Usuario
+        private async void OnRegisterClicked(object sender, EventArgs e)
         {
-            Nombre = nombre,
-            Email = email,
-            Password = password,
-            Rol = rol
-        };
+            var usuario = new Usuario
+            {
+                Nombre = NombreEntry.Text,
+                Email = EmailEntry.Text,
+                Password = PasswordEntry.Text,
+                Rol = RolPicker.SelectedItem?.ToString()
+            };
 
-        if (authService.RegistrarUsuario(usuario))
-        {
-            await DisplayAlert("Éxito", "Usuario registrado correctamente", "OK");
-            await Navigation.PopAsync(); // Volver a la pantalla de login
-        }
-        else
-        {
-            await DisplayAlert("Error", "El usuario ya existe", "OK");
+            if (await _authService.RegistrarUsuario(usuario))
+            {
+                await DisplayAlert("Éxito", "Usuario registrado correctamente", "OK");
+                await Navigation.PopAsync(); // Volver a la pantalla de login
+            }
+            else
+            {
+                await DisplayAlert("Error", "El usuario ya existe o hubo un error", "OK");
+            }
         }
     }
 }

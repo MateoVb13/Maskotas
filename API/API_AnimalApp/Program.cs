@@ -1,24 +1,30 @@
 using Microsoft.EntityFrameworkCore;
-using API_AnimalApp.Data; // Asegúrate de que este `using` esté alineado con el namespace donde está tu ApplicationDbContext
+using API_AnimalApp.Data;
+using System;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace API_AnimalApp
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            // Configurar el contexto de base de datos
+            // Configura la conexión a MySQL
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            var serverVersion = new MySqlServerVersion(new Version(9, 0, 1)); // Configura la versión de MySQL
+
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySql(connectionString, serverVersion));
+
 
             var app = builder.Build();
 
@@ -40,3 +46,15 @@ namespace API_AnimalApp
         }
     }
 }
+
+
+
+
+
+
+
+
+            
+
+
+       

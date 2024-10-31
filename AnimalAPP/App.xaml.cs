@@ -8,13 +8,15 @@ namespace AnimalAPP
 {
     public partial class App : Application
     {
+        public static IServiceProvider ServiceProvider { get; private set; }
+
         public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            ServiceProvider = serviceProvider;
 
-            // Obtener AuthService del contenedor de servicios y pasar a LoginPage
-            var authService = serviceProvider.GetService<AuthService>();
-            MainPage = new NavigationPage(new LoginPage(authService));
+            // Configurar la página principal de la aplicación
+            MainPage = new NavigationPage(new LoginPage(ServiceProvider.GetService<AuthService>()));
         }
     }
 }

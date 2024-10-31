@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Controls.Hosting;
+﻿// MauiProgram.cs
 using Microsoft.Maui.Hosting;
 using AnimalAPP.Services;
 
@@ -15,15 +14,18 @@ namespace AnimalAPP
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+            // Configurar HttpClient y servicios
+            builder.Services.AddHttpClient<AuthService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:7037/api/");
+            });
 
-            // Registrar AuthService como singleton
-            builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddHttpClient<CitaService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:7037/api/");
+            });
 
             return builder.Build();
         }

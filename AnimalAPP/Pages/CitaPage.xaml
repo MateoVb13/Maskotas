@@ -4,19 +4,30 @@
              x:Class="AnimalAPP.Pages.CitaPage"
              Title="Gestión de Citas">
 
-    <StackLayout Padding="20">
+<StackLayout Padding="20">
+        <Label Text="Crear nueva cita" FontSize="Large" />
         <DatePicker x:Name="FechaPicker" />
         <TimePicker x:Name="HoraPicker" />
         <Entry Placeholder="Nombre de la Mascota" x:Name="MascotaEntry" />
+        <Entry Placeholder="Dueño" x:Name="DueñoEntry" />
         <Entry Placeholder="Motivo de la Cita" x:Name="MotivoEntry" />
-        <!--<Button Text="Crear Cita" Clicked="OnCrearCitaClicked" />-->
-        <ListView x:Name="CitasListView">
-            <ListView.ItemTemplate>
+        <Button Text="Crear Cita" Clicked="OnCrearCitaClicked" />
+
+        <Label Text="Citas existentes" FontSize="Large" Margin="0,20,0,0" />
+        <CollectionView ItemsSource="{Binding Citas}">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Mascota}" Detail="{Binding Motivo}" />
+                    <Frame Padding="10" Margin="0,5" BorderColor="Gray">
+                        <StackLayout>
+                            <Label Text="{Binding Mascota}" FontAttributes="Bold" />
+                            <Label Text="{Binding Dueño}" />
+                            <Label Text="{Binding FechaHora, StringFormat='Fecha: {0:dd/MM/yyyy HH:mm}'}" />
+                            <Label Text="{Binding Motivo}" />
+                        </StackLayout>
+                    </Frame>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 
 </ContentPage>

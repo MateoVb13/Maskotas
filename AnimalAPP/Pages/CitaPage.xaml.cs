@@ -1,33 +1,56 @@
-using System;
+// Views/CitaPage.xaml.cs
 using System.Collections.ObjectModel;
 using AnimalAPP.Models;
 using AnimalAPP.Services;
+using Microsoft.Maui.Controls;
 
-using System.Collections.ObjectModel;
-
-namespace AnimalAPP.Pages;
-
-public partial class CitaPage : ContentPage
+namespace AnimalAPP.Pages
 {
-    private ObservableCollection<Cita> citas = new ObservableCollection<Cita>();
-    private AuthService authService = new AuthService();
-
-    public CitaPage()
+    public partial class CitaPage : ContentPage
     {
-        InitializeComponent();
-        CitasListView.ItemsSource = citas;
+        private readonly CitaService _citaService;
+        public ObservableCollection<Cita> Citas { get; set; } = new ObservableCollection<Cita>();
+
+        public CitaPage(CitaService citaService)
+        {
+            InitializeComponent();
+            _citaService = citaService;
+            BindingContext = this;
+            CargarCitas();
+        }
+
+        private async void CargarCitas()
+        {
+            var citas = await _citaService.ObtenerCitasAsync();
+            if (citas != null)
+            {
+                Citas.Clear();
+                foreach (var cita in citas)
+                {
+                    Citas.Add(cita);
+                }
+            }
+        }
+
+        private async void OnCrearCitaClicked(object sender, EventArgs e)
+        {
+            var nuevaCita = new Cita
+            {
+                FechaHora = FechaPicker.Date + HoraPicker.Time,
+                Mascota = MascotaEntry.Text,
+                Dueño = DueñoEntry.Text,
+                Motivo = MotivoEntry.Text
+            };
+
+            if (await _citaService.CrearCitaAsync(nuevaCita))
+            {
+                await DisplayAlert("Éxito", "Cita creada correctamente", "OK");
+                CargarCitas();
+            }
+            else
+            {
+                await DisplayAlert("Error", "No se pudo crear la cita", "OK");
+            }
+        }
     }
-
-    //private void OnCrearCitaClicked(object sender, EventArgs e)
-    //{
-    //    var cita = new Cita
-    //    {
-    //        FechaHora = FechaPicker.Date + HoraPicker.Time,
-    //        Mascota = MascotaEntry.Text,
-    //        Dueño = authService.LoginUser?.Nombre, // Propiedad en AuthService para usuario activo
-    //        Motivo = MotivoEntry.Text
-    //    };
-
-    //    citas.Add(cita);
-    //}
 }

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// AuthService.cs
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AnimalAPP.Models;
 
@@ -9,20 +9,35 @@ namespace AnimalAPP.Services
 {
     public class AuthService
     {
-        private List<Usuario> usuarios = new List<Usuario>();
+        private readonly HttpClient _httpClient;
 
-        public bool RegistrarUsuario(Usuario usuario)
+        public AuthService(HttpClient httpClient)
         {
-            if (usuarios.Any(u => u.Email == usuario.Email))
-                return false; // El usuario ya existe
-
-            usuarios.Add(usuario);
-            return true;
+            _httpClient = httpClient;
         }
 
-        public Usuario Login(string email, string password)
+        public async Task<bool> RegistrarUsuario(Usuario usuario)
         {
-            return usuarios.FirstOrDefault(u => u.Email == email && u.Password == password);
+            var json = JsonSerializer.Serialize(usuario);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("https://localhost:7037/api/usuarios/register", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<Usuario> Login(string email, string password)
+        {
+            var loginData = new { Email = email, Password = password };
+            var json = JsonSerializer.Serialize(loginData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("https://localhost:7037/api/usuarios/login", content);
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<Usuario>(jsonResponse);
         }
 
         public bool EsAdmin(Usuario usuario)
