@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalAPP.Pages.Admin.ManageAppointmentsPage">
+    <ContentPage.Content>
+        <StackLayout Padding="30" Spacing="15">
+            <Label Text="Gestión de Citas" 
+                   FontSize="24" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <!-- Lista de citas programadas -->
+            <CollectionView x:Name="AppointmentsCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
+                            <StackLayout>
+                                <Label Text="Mascota: {Binding PetName}" FontSize="18" FontAttributes="Bold"/>
+                                <Label Text="Servicio: {Binding Service}" FontSize="16"/>
+                                <Label Text="Fecha y Hora: {Binding AppointmentDateTime}" FontSize="16" TextColor="Gray"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

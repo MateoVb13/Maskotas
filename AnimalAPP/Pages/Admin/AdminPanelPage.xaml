@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalAPP.Pages.Admin.AdminPanelPage">
+    <ContentPage.Content>
+        <StackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+
+            <!-- Título de la página del administrador -->
+            <Label Text="Panel de Administración" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"/>
+
+            <!-- Botón para gestionar usuarios -->
+            <Button Text="Gestión de Usuarios" 
+                    FontSize="18"
+                    Clicked="OnManageUsersClicked"/>
+
+            <!-- Botón para gestionar mascotas -->
+            <Button Text="Gestión de Mascotas" 
+                    FontSize="18"
+                    Clicked="OnManagePetsClicked"/>
+
+            <!-- Botón para gestionar citas -->
+            <Button Text="Gestión de Citas" 
+                    FontSize="18"
+                    Clicked="OnManageAppointmentsClicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

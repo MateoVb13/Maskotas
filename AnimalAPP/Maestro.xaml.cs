@@ -1,5 +1,7 @@
 using AnimalAPP.Pages;
 using Microsoft.Maui.Controls;
+using AnimalAPP.Pages.Admin;
+
 
 namespace AnimalAPP
 {

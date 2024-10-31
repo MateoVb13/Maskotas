@@ -1,0 +1,25 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalAPP.Pages.Admin.ManageUsersPage">
+    <ContentPage.Content>
+        <StackLayout Padding="30" Spacing="15">
+            <Label Text="Gestión de Usuarios" 
+                   FontSize="24" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <!-- Lista de usuarios registrados -->
+            <CollectionView x:Name="UsersCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Name}" FontSize="18"/>
+                            <Label Text="{Binding Email}" FontSize="16" TextColor="Gray"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
