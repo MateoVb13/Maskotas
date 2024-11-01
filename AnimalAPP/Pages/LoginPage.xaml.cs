@@ -15,25 +15,30 @@ namespace AnimalAPP.Pages
             _authService = authService;
         }
 
+
+
         private async void OnLoginClicked(object sender, EventArgs e)
         {
             var email = EmailEntry.Text;
             var password = PasswordEntry.Text;
 
-            var usuario = await _authService.Login(email, password);
+            // Llama a AuthService para verificar las credenciales
+            var usuario = await _authService.LoginAsync(email, password);
             if (usuario != null)
             {
                 await DisplayAlert("Éxito", "Inicio de sesión exitoso", "OK");
 
+                // Obtén el servicio CitaService desde el contenedor de dependencias
                 var citaService = App.ServiceProvider.GetService<CitaService>();
 
                 if (_authService.EsAdmin(usuario))
                 {
-                    await Navigation.PushAsync(new CitaPage(citaService)); // Navegar a CitaPage con CitaService inyectado
+                    await Navigation.PushAsync(new CitaPage(citaService)); // Página de administrador
                 }
                 else
                 {
-                    await Navigation.PushAsync(new CitaPage(citaService)); // Navegar a CitaPage con CitaService inyectado
+                    // Pasa la instancia de CitaService al navegar a CitaPage
+                    await Navigation.PushAsync(new CitaPage(citaService)); // Página de citas
                 }
             }
             else

@@ -4,30 +4,31 @@
              x:Class="AnimalAPP.Pages.CitaPage"
              Title="Gestión de Citas">
 
-<StackLayout Padding="20">
-        <Label Text="Crear nueva cita" FontSize="Large" />
-        <DatePicker x:Name="FechaPicker" />
-        <TimePicker x:Name="HoraPicker" />
-        <Entry Placeholder="Nombre de la Mascota" x:Name="MascotaEntry" />
-        <Entry Placeholder="Dueño" x:Name="DueñoEntry" />
-        <Entry Placeholder="Motivo de la Cita" x:Name="MotivoEntry" />
-        <Button Text="Crear Cita" Clicked="OnCrearCitaClicked" />
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Crear nueva cita" FontSize="Large" />
+            <DatePicker x:Name="FechaPicker" />
+            <TimePicker x:Name="HoraPicker" />
+            <Entry Placeholder="Nombre de la Mascota" x:Name="MascotaEntry" />
+            <Entry Placeholder="Dueño" x:Name="DueñoEntry" />
+            <Entry Placeholder="Motivo de la Cita" x:Name="MotivoEntry" />
+            <Button Text="Crear Cita" Clicked="OnCrearCitaClicked" />
 
-        <Label Text="Citas existentes" FontSize="Large" Margin="0,20,0,0" />
-        <CollectionView ItemsSource="{Binding Citas}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="0,5" BorderColor="Gray">
-                        <StackLayout>
-                            <Label Text="{Binding Mascota}" FontAttributes="Bold" />
-                            <Label Text="{Binding Dueño}" />
-                            <Label Text="{Binding FechaHora, StringFormat='Fecha: {0:dd/MM/yyyy HH:mm}'}" />
-                            <Label Text="{Binding Motivo}" />
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
-
+            <Label Text="Citas existentes" FontSize="Large" Margin="0,20,0,0" />
+            <CollectionView ItemsSource="{Binding Citas}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="0,5" BorderColor="Gray">
+                            <StackLayout>
+                                <Label Text="{Binding Mascota}" FontAttributes="Bold" />
+                                <Label Text="{Binding Dueño}" />
+                                <Label Text="{Binding FechaHora, StringFormat='Fecha: {0:dd/MM/yyyy HH:mm}'}" />
+                                <Label Text="{Binding Motivo}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

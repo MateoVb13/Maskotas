@@ -11,12 +11,13 @@ namespace AnimalAPP.Pages
         private readonly CitaService _citaService;
         public ObservableCollection<Cita> Citas { get; set; } = new ObservableCollection<Cita>();
 
+
         public CitaPage(CitaService citaService)
         {
             InitializeComponent();
             _citaService = citaService;
             BindingContext = this;
-            CargarCitas();
+            CargarCitas(); // Llama a este método para cargar las citas al iniciar la página
         }
 
         private async void CargarCitas()
@@ -27,6 +28,7 @@ namespace AnimalAPP.Pages
                 Citas.Clear();
                 foreach (var cita in citas)
                 {
+                    Console.WriteLine($"Cita: {cita.Mascota}, FechaHora: {cita.FechaHora}");
                     Citas.Add(cita);
                 }
             }

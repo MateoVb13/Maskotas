@@ -18,20 +18,27 @@ namespace AnimalAPP.Services
 
         public async Task<List<Cita>> ObtenerCitasAsync()
         {
-            var response = await _httpClient.GetAsync("https://localhost:7037/api/citas");
+            var response = await _httpClient.GetAsync("citas");
             if (!response.IsSuccessStatusCode)
                 return null;
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<List<Cita>>(jsonResponse);
+
+            // Configuración personalizada para deserialización
+            var opciones = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true, // Ignora mayúsculas y minúsculas en nombres de propiedades
+            };
+
+            return JsonSerializer.Deserialize<List<Cita>>(jsonResponse, opciones);
         }
 
         public async Task<bool> CrearCitaAsync(Cita cita)
         {
             var json = JsonSerializer.Serialize(cita);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("https://tu-api.com/api/citas", content);
+            var response = await _httpClient.PostAsync("citas", content);
             return response.IsSuccessStatusCode;
         }
     }

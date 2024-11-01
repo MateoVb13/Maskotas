@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AnimalAPP.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnimalAPP.Services
 {
@@ -21,20 +22,23 @@ namespace AnimalAPP.Services
             var json = JsonSerializer.Serialize(usuario);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("https://localhost:7037/api/usuarios/register", content);
+            var response = await _httpClient.PostAsync("http://localhost:5194/api/usuarios/register", content);
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<Usuario> Login(string email, string password)
+        public async Task<Usuario> LoginAsync(string email, string password)
         {
             var loginData = new { Email = email, Password = password };
             var json = JsonSerializer.Serialize(loginData);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("https://localhost:7037/api/usuarios/login", content);
+            // Llama al endpoint de login de la API
+            var response = await _httpClient.PostAsync("usuarios/login", content);
 
             if (!response.IsSuccessStatusCode)
-                return null;
+            {
+                return null; // Credenciales incorrectas o error en la API
+            }
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<Usuario>(jsonResponse);
@@ -44,5 +48,5 @@ namespace AnimalAPP.Services
         {
             return usuario?.Rol == "Admin";
         }
-    }
+    }   
 }
