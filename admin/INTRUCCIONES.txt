@@ -1,0 +1,4 @@
+1. esta carpeta tienes que ponerla en htdocs en donde tengas instalado xampp
+2. verifica que la conexion con la bd este bien (verifica tus credenciales y lo que sea necesario)
+3. usa la bd de prueba pq todavia no esta modificado para la bd final
+
